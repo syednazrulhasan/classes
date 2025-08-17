@@ -15,7 +15,7 @@ use Client\MailgunMailer;
 use Client\Response;
 ```
 
-#### Validate Form
+### Validate Form
 ```
 $validate=CurlRequest::validate($_POST,[
        "firstname"         =>"required",
@@ -33,7 +33,7 @@ $validate=CurlRequest::validate($_POST,[
 ```
 
 
-#### Sending Mail by Mailgun API
+### Sending Mail by Mailgun API
 ```
 $subject = "Subject - Enquiry";
 $mailer = new MailgunMailer();
@@ -47,8 +47,8 @@ $response = $mailer->sendEmail(
 echo json_encode($response);
 ```
 
-#### Sending Leads to Anthill
-### Creating an Enquiry
+### Sending Leads to Anthill
+#### Creating an Enquiry
 ```
 $crm = new AnthillCRM();
 $response = $crm->createEnquiry($_POST);
@@ -63,7 +63,7 @@ if ($response['status']) {
   echo json_encode(['status' => false]);
 }
 ```
-### Updating an Enquiry
+#### Updating an Enquiry
 ```
 $crm = new AnthillCRM();
 $fieldsToUpdate = [
@@ -78,7 +78,7 @@ $fieldsToUpdate = [
 
 $response =  $crm->updateEnquiryDetails($fieldsToUpdate);
 ```
-### Reset Enquiry Details
+#### Reset Enquiry Details
 ```
 $fieldsToClear = [
     "How did you find us?",
@@ -92,7 +92,7 @@ $fieldsToClear = [
 $crm = new AnthillCRM();
 $response = $crm->clearEnquiryDetails(000000, $fieldsToClear);
 ```
-### Get Enquiry by Enquiry ID
+#### Get Enquiry by Enquiry ID
 ```
 $crm = new AnthillCRM();
 $enquiry = $crm->getEnquiryById(000000);
@@ -100,7 +100,7 @@ $enquiry = $crm->getEnquiryById(000000);
 echo '<pre>';
 print_r($enquiry);
 ```
-### Get Customer by Customer ID
+#### Get Customer by Customer ID
 ```
 $crm = new AnthillCRM();
 $customer = $crm->getCustomerById(111111);
@@ -109,7 +109,7 @@ echo '<pre>';
 print_r($customer);
 ```
 
-#### Sending Leads to Hubspot
+### Sending Leads to Hubspot
 ```
 $accessToken = "pat-xyz-xxxxxxxx-xxxx-xxxx-xxxxxxxxxxxx";
 $listId      = "123456"; // HubSpot list ID
@@ -143,7 +143,7 @@ try {
 }
 ```
 
-#### Sending Leads to Salesforce
+### Sending Leads to Salesforce
 ```
 $leadsData = [
     'FirstName'   => $_POST['firstname'],
@@ -189,7 +189,7 @@ if (isset($lookup['status']) && $lookup['status'] === true && !empty($lookup['le
 }
 ```
 
-#### Sending Leads to Microsoft Dynamics
+### Sending Leads to Microsoft Dynamics
 ```
 try {
 
@@ -228,7 +228,7 @@ try {
 }
 ```
 
-#### Sending Leads to Zapier
+### Sending Leads to Zapier
 ```
 try {
     $formData = [
@@ -256,8 +256,8 @@ try {
 }
 ```
 
-#### Sending Leads to Database
-### Insert
+### Sending Leads to Database
+#### Insert
 ```
 $db = new Database();
 
@@ -280,7 +280,7 @@ try {
     echo "Error: " . $e->getMessage();
 }
 ```
-### Update
+#### Update
 ```
 $db = new Database();
 $taskId = $_POST['taskid']; // ID to update
@@ -305,7 +305,7 @@ try {
 } 
 ```
 
-#### Sending Leads to Spark RE CRM 
+### Sending Leads to Spark RE CRM 
 ```
 $crm = new SparkCRM();
 
